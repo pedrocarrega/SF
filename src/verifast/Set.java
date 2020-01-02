@@ -2,26 +2,37 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Set{
+	/*@
+	predicate set(list<Object> elems) =
+		this.size |-> ?s &*&
+		this.elems |-> ?e &*&
+		e[0..s] |-> elems &*&
+		e[s..e.length] |-> _ &*&
+		s == length(elems);
+	@*/
 
-private final List<Object> set;
 
-    public Set() {
+private Object[] elems;
+private int size;
+private static final int DEFAULT_CAPACITY = 10;
+
+    public Set() 
         //@ requires true;
-        //@ ensures set.isEmpty();
-        set = new ArrayList<Object>();
+        //@ ensures set(nil);
+    {    elems = new Object[DEFAULT_CAPACITY];
     }
 
-    public boolean isEmpty() {
-        //@ requires ;
-        //@ ensures ;
-        return set.isEmpty();
+    public boolean isEmpty() 
+        //@ requires set(?elems);
+        //@ ensures set(elems) &*& result == (length(elems) == 0);
+    {    return size == 0;
     }
 
-    public int size() {
-        //@ requires ;
-        //@ ensures ;
-        return set.size();
-    }
+    public int size() 
+        //@ requires set(?elems);
+        //@ ensures set(elems) &*& result == length(elems);
+    {    return size;
+    }/*
 
     public void clear() {
         //@ requires ;
@@ -48,6 +59,6 @@ private final List<Object> set;
     }
 
 
-
+*/
 
 }
