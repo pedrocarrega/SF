@@ -1,7 +1,7 @@
 
 public class Set{
 	/*@
-	predicate set(Object[] elems) =
+	predicate set(list<Object> elems) =
 		this.size |-> ?s &*&
 		this.elements |-> ?e &*&
 		e[0..s] |-> elems &*&
@@ -56,7 +56,7 @@ private static final int DEFAULT_CAPACITY = 10;
     }
 
     public void add(Object o)
-        //@ requires set(?elems);
+        //@ requires set(?elems) &*& !contains(o);
         //@ ensures set(append(elems, cons(o, nil)));
         {
         if(size == elements.length){
@@ -81,10 +81,15 @@ private static final int DEFAULT_CAPACITY = 10;
         }
     }
 /*
-    public void remove(final Object o) {
-        //@ requires !set.isEmpty();
-        //@ ensures ;
-        set.remove(o);
+    public void remove(Object o) {
+        //@ requires !set.isEmpty() &*& contains(o);
+        //@ ensures set(take(length(elems) - 1, elems));
+        for(int i = 0; i < elements.length; i++)
+        {
+        	if(elements[i] == o){
+        		elements[i] = null;
+        	}
+        }
     }
 
 
