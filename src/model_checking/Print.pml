@@ -5,7 +5,8 @@
 chan print = [buffer] of {int, int, int, bool};
 chan answer = [printers] of {int, int};
 
-//ltl absense_of_starvation {eventually notIdle}
+ltl absense_of_starvation {eventually Printer@actived}
+ltl will_finish {eventually Printer@finish && Client@collect}
 
 active [printers] proctype Printer(){
     
