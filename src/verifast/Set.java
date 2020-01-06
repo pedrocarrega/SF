@@ -34,10 +34,14 @@ private static final int DEFAULT_CAPACITY = 10;
 
     public void clear()
         //@ requires ;
-        //@ ensures ;
+        //@ ensures set(nil);
         {
-        set.removeAll(set);
-    }*/
+        for(int i = 0; i < size; i++)
+        //@ invariant array_slice(elements, 0, size, _) &*& 0 <= i;
+        {
+        	elements[i] = null;
+        }
+    }
 
     public boolean contains(Object o)
         //@ requires set(?elems) &*& array_slice(elems, 0, size, _);
@@ -54,9 +58,10 @@ private static final int DEFAULT_CAPACITY = 10;
         
         return false;
     }
+    */
 
     public void add(Object o)
-        //@ requires set(?elems) &*& !contains(o);
+        //@ requires set(?elems);// &*& !contains(o);
         //@ ensures set(append(elems, cons(o, nil)));
         {
         if(size == elements.length){
@@ -79,6 +84,7 @@ private static final int DEFAULT_CAPACITY = 10;
         		}
         	}
         }
+        size++;
     }
 /*
     public void remove(Object o) {
@@ -90,6 +96,7 @@ private static final int DEFAULT_CAPACITY = 10;
         		elements[i] = null;
         	}
         }
+        size--;
     }
 
 

@@ -5,20 +5,24 @@
 chan print = [buffer] of {int, int, int, bool};
 chan answer = [printers] of {int, int};
 
-active [printers] proctype Printer(){
+//ltl absense_of_starvation {eventually notIdle}
 
+active [printers] proctype Printer(){
+    
     int id = _pid;
     int cId;
     int printed;
     int nPages;
-    bool notIdle = false;
+    bool notIdle = false; //ghost variable
     int toPrint;
+
 
     actived:
 
         notIdle = false;
         do
-        :: print ?? [_, _, _, true] -> print ?? cId, nPages, toPrint, notIdle; //now would print first page
+        :: print ?? [_, _, _, true] -> print ?? cId, nPages, toPrint, notIdle; //printer is now serving a client and wont take another request till it ends
+         //now would print first page
             printed++;
             goto goPrint
         od
@@ -42,7 +46,7 @@ active [printers] proctype Printer(){
 active [clients] proctype Client(){
 
     int id = _pid;
-    int nPages = (id+1)*2
+    int nPages = (id+1)*2;
     int pagesLeft;
 
     int printer;
