@@ -41,7 +41,7 @@ lemma_auto void length_append_auto<t>(list<t> xs, list<t> ys)
 }
 @*/
 
-public class ArrayStack implements Stack {
+public class ArrayStack {
   /*@
   predicate stack(list<Object> elems) =
     this.size |-> ?s &*&
@@ -117,7 +117,7 @@ public class ArrayStack implements Stack {
     //@ requires System_out(?o) &*& o != null;
     //@ ensures true;
   {
-    ArrayStack s = new ArrayStack(1);
+    ArrayStack s = new ArrayStack();
     s.push(null);
    // s.push(null);
     s.peek();
