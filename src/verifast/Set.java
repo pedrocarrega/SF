@@ -55,7 +55,7 @@ private static final int DEFAULT_CAPACITY = 10;
 
     public boolean contains(Object o)
         //@ requires set(?elems) &*& size |-> ?s;
-        //@ ensures set(elems);
+        //@ ensures set(elems) &*& result == mem<Object>(o, elems);
         {
         //@ open set(elems);
         for(int i = 0; i < size; i++)
@@ -75,12 +75,15 @@ private static final int DEFAULT_CAPACITY = 10;
         //@ requires set(?elems) &*& elements |-> ?e;
         //@ ensures set(elems) &*& set(append(elems, cons(o, nil)));
         {
-        if(size == elements.length){
-        	Object[] newElements = new Object[size*2+1];
-        	System.arraycopy(elements, 0, newElements, 0, size);
-        	elements = newElements;
+        //@ open set(elems);
+        if(!contains(o)){
+        	if(size == elements.length){
+        		Object[] newElements = new Object[size*2+1];
+        		System.arraycopy(elements, 0, newElements, 0, size);
+        		elements = newElements;
+        	}
+        	elements[size++] = o;
         }
-        elements[size++] = o;
     }
     
 
