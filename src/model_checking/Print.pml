@@ -52,7 +52,7 @@ active [clients] proctype Client(){
 
     int printer;
 
-    print:
+    prints:
 
         pagesLeft = nPages;
         
