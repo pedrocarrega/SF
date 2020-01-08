@@ -7,7 +7,8 @@ public class Set{
     		this.size |-> ?s &*&
     		e[0..s] |-> elems &*& // get hold of the elems in the stack
     		e[s..e.length] |-> _ &*&
-    		s == length(elems); // the invariant
+    		s == length(elems) &*& // confirms size
+    		distinct<Object>(elems) == true; // the invariant
  	@*/
 	
 
