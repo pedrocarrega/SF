@@ -90,7 +90,7 @@ private static final int DEFAULT_CAPACITY = 10;
 
     public void remove(Object o)
         //@ requires set(?elems) &*& size |-> ?s;
-        //@ ensures set(elems) &*& set(take(length(elems) - 1, elems));
+        //@ ensures set(elems) &*& set(remove(o, elems));
         {
         
         boolean update = false;
