@@ -1,13 +1,32 @@
+/*
+* @author Pedro Carrega, nº49480
+*
+* This program implements a printing system that receives requests from seperate clients
+* Each printer can only handle one request at a time signalling
+*/
+
 #define printers 2 //number of printers
 #define clients 3 //number of clients
 #define buffer 5 //size of the printing buffer
 
-chan print = [buffer] of {int, int, int, bool};
-chan answer = [printers] of {int, int};
+chan print = [buffer] of {int, int, int, bool}; //asynchronous channel where printing requests are posted
+chan answer = [printers] of {int, int}; //asynchronous channel where the printers notify clients
 
+/*
+* To check each property you must run the following commands in the command line:
+*
+* 1 - spin -a Print.pml
+* 2 - gcc -o pan pan.c
+* 3 - ./pan -a -f
+* 4 - spin -t -p -g Print.pml (in case a property does not hold)
+*/
 ltl absense_of_starvation {eventually Printer@actived}
 ltl will_finish {eventually Printer@finish && Client@collect}
+//ltl busy {always Printer.notIdle && (Printer@goPrint || Printer@finish)}
 
+/*
+* Implementation of a printer
+*/ 
 active [printers] proctype Printer(){
     
     int id = _pid;
@@ -20,6 +39,7 @@ active [printers] proctype Printer(){
     goto actived;
 
 
+    //printer is waiting for a request
     actived:
 
         notIdle = false; //ghost variable
@@ -30,6 +50,7 @@ active [printers] proctype Printer(){
             goto goPrint
         od
     
+    //printer received a request and now it's receiving the pages and printing them
     goPrint:
         do
         :: if
@@ -46,6 +67,9 @@ active [printers] proctype Printer(){
         goto actived;
 }
 
+/*
+* Implementation of a client
+*/
 active [clients] proctype Client(){
 
     int id = _pid;
@@ -56,6 +80,8 @@ active [clients] proctype Client(){
 
     goto prints;
 
+    
+    //client will create and send a print request
     prints:
 
         //pagesLeft = nPages; //in case you want to print again
@@ -72,11 +98,13 @@ active [clients] proctype Client(){
         od
 
     
+    //will now await an answer from the printer from where to collect his document
     collect:
         answer ?? [id, _] -> answer ?? _, printer;
         printf("Collect from printer %d\n", printer);
-        goto stop;
+        goto stop; //change to prints in case you want to print again
 
+    
     stop:
         skip;
 
