@@ -61,7 +61,7 @@ private static final int DEFAULT_CAPACITY = 10;
         for(int i = 0; i < size; i++)
         //@ invariant array_slice(elements, 0, size, _) &*& 0 <= i;
         {
-        	if(elements[i] == e){
+        	if(elements[i] == o){
         		return true;
         	}
         }
