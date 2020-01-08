@@ -1,3 +1,7 @@
+/*
+ * @author Pedro Carrega, nº49480  
+ */
+
 
 public class Set{
 	
