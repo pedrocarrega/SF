@@ -1,6 +1,6 @@
 #define printers 2 //number of printers
 #define clients 3 //number of clients
-#define buffer 10 //size of the printing buffer
+#define buffer 5 //size of the printing buffer
 
 chan print = [buffer] of {int, int, int, bool};
 chan answer = [printers] of {int, int};
@@ -17,12 +17,14 @@ active [printers] proctype Printer(){
     bool notIdle = false; //ghost variable
     int toPrint;
 
+    goto actived;
+
 
     actived:
 
-        notIdle = false;
+        notIdle = false; //ghost variable
         do
-        :: print ?? [_, _, _, true] -> print ?? cId, nPages, toPrint, notIdle; //printer is now serving a client and wont take another request till it ends
+        :: print ?? [_, _, _, true] -> print ?? cId, nPages, toPrint, notIdle; //printer is now serving a client and wont take another request till it finishes
          //now would print first page
             printed++;
             goto goPrint
@@ -34,7 +36,7 @@ active [printers] proctype Printer(){
             :: printed == nPages -> goto finish;
             :: else -> print ? [cId, nPages, _, false] -> print ? cId, _, toPrint, _; //now the printer would print
                 printed++
-        fi
+            fi
         od
 
     //notify client that printing is complete
@@ -48,13 +50,15 @@ active [clients] proctype Client(){
 
     int id = _pid;
     int nPages = (id+1)*2;
-    int pagesLeft;
+    int pagesLeft = nPages;
 
     int printer;
 
+    goto prints;
+
     prints:
 
-        pagesLeft = nPages;
+        //pagesLeft = nPages; //in case you want to print again
         
         do
         :: if
