@@ -1,0 +1,27 @@
+a)
+
+y = i <= n ^ s >= i(i+1)/4
+
+{n >= 0} -> 0 >= 0 é veridico, logo pode ser cortado
+{0 <= n ^ 0 >= 0}
+s:= 0
+{0 <= n ^ s >= 0(1)/4}
+i:= 0
+{y}
+while i < n do:
+    {y ^ i < n} -> invariante implica a invariante e se entramos no ciclo i < n //isto deve tar mal
+    {i+2 <= n ^ s+1 >= (i+2)(i+3)/4}
+    i:= i+2
+    {i <= n ^ s+1 >= i(i+1)/4}
+    s:= s+i
+    {y}
+{y ^ !(i < n)}
+{s >= n(n+1)/4}
+
+b)
+
+//TODO
+
+c)
+
+//TODO 
