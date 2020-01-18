@@ -6,3 +6,7 @@ b)
 
 O verifast lançaria um erro de missing heap chunks, dado que a memoria nao foi libertada no final de getA.
 Ao substituir o metodo por getB, o verifast ja nao lançaria erro pois a memoria e libertada no fim do metodo.
+
+c)
+
+//check C.java
