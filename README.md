@@ -1,2 +1,0 @@
-# SF
-Assignment_3
