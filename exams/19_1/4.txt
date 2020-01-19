@@ -7,3 +7,13 @@ init
 
 b)
 
+O processo Fib não irá terminar, isto seria provado correndo o modelo pelo Spin.
+
+c)
+
+//tem de se modificar o modelo, no clue how tho
+Para mostrar que o modelo chega à solução desejada será necessário ver o trail criado pelo Spin.
+Para isso será necessário criar o compilador do nosso modelo (spin -a fib.pml), seguido de compilar dito compilador (gcc -o pan pan.c), a seguir correr o executavel (./pan) e por fim vizualizar o trail (spin -t fib.pml).
+
+d)
+
