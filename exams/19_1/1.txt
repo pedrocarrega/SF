@@ -20,8 +20,9 @@ while i < n do:
 
 b)
 
-e = i //variant
+e = n - i //variant
 
+/*
 while i < n  do:
     {y ^ i < n} -> {n >= i+2}
     i:= i+2;
@@ -29,24 +30,25 @@ while i < n  do:
     s:= s+i;
     {n >= i}
 {n >= i ^ !(i > n)} -> {i == n}
+*/
 
 while i < n do:
     {n >= i ^ n > i ^ e = v} ->
-    {i + 2 < v} //isto nao se verfica, k alterar para corrigir?
+    {n - i + 2 < v} //isto nao se verfica, k alterar para corrigir?
     i:= i+2;
-    {i < v}
+    {n-i < v}
     s:= s+i;
-    {i < v}
+    {n-i < v}
 
-Como i é uma expressao inteira temos de demonstrar:
+Como n - i é uma expressao inteira temos de demonstrar:
 
     y ^ n > i -> e >= 0
 
 Que pode ser traduzido para
 
-    n >= i ^ n > i -> n >= i
+    n >= i ^ n > i -> n - i >= 0
 
-Que claramente se verfica
+Que claramente se verfica, visto que n >= i
 
 c)
 
