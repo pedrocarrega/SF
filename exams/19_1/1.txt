@@ -20,7 +20,33 @@ while i < n do:
 
 b)
 
-//TODO
+e = i //variant
+
+while i < n  do:
+    {y ^ i < n} -> {n >= i+2}
+    i:= i+2;
+    {n >= i}
+    s:= s+i;
+    {n >= i}
+{n >= i ^ !(i > n)} -> {i == n}
+
+while i < n do:
+    {n >= i ^ n > i ^ e = v} ->
+    {i + 2 < v} //isto nao se verfica, k alterar para corrigir?
+    i:= i+2;
+    {i < v}
+    s:= s+i;
+    {i < v}
+
+Como i é uma expressao inteira temos de demonstrar:
+
+    y ^ n > i -> e >= 0
+
+Que pode ser traduzido para
+
+    n >= i ^ n > i -> n >= i
+
+Que claramente se verfica
 
 c)
 
