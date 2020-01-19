@@ -1,0 +1,58 @@
+a)
+
+y = i >= 0 ^ s = (n-i) * m
+
+
+{n >= 0} -> 0==0 é verdico, logo corta-se, ficando com n >= 0  
+{0 = 0 ^ n >=0} 
+s:=0;
+{s = (n - n) * m ^ n >= 0}
+i:=n;
+{y}
+while i > 0 do:
+    {y ^ i > 0}
+    {s+m = (n-i-1) * m ^ i-1 >= 0}
+    s:= s+m;
+    {s = (n-i-1) * m ^ i-1 >= 0}
+    i:= i-1;
+    {y}
+{y ^ !(i > 0)}
+{s = n * m}
+
+b)
+
+e = i //variant
+
+while i > 0 do:
+    {y ^ i > 0} -> {i - 1 >= 0}
+    s:= s+m;
+    {i - 1 >= 0}
+    i:= i-1;
+    {i >= 0}
+{i >= 0 ^ !(i > 0)} -> {i = 0}
+
+while i > 0 do:
+    {y >= 0 ^ i > 0 ^ e = v} ->
+    {i - 1 < v}
+    s:= s+m;
+    {i-1 < v}
+    i:= i-1;
+    {i < v}
+
+Porque i é uma expressao inteira é necessário demonstrar:
+
+    y ^ i > 0 -> e >= 0
+
+Isto é
+
+    i >= 0 ^ i > 0 -> i >= 0
+
+Que claramente se verfica
+
+c)
+
+Triplos de Hoard ({x} S {y}) simplesmente garantem que y é veridico depois de S processar x.
+
+d)
+
+Mesmo que a condicao de y nao se verfique, S tem de ser processado na mesma.
