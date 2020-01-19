@@ -2,7 +2,7 @@ a)
 
 y = i <= n ^ s >= i(i+1)/4
 
-{n >= 0} -> 0 >= 0 é veridico, logo pode ser cortado
+{n >= 0} -> 0 >= 0 é veridico, logo pode ser cortado, ficando com n >= 0
 {0 <= n ^ 0 >= 0}
 s:= 0
 {0 <= n ^ s >= 0(1)/4}
