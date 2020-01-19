@@ -4,8 +4,7 @@ a)
 
 b)
 
-O 1º erro indica que estamos a tentar aceder a uma casa do array que pode nao existir, enquanto que o 2º erro queixa que nao e possivel verficar a pos condicao.
-Ambos os erros estao relacionados e devem-se ao facto de o array fornecido poder ter tamanho 0. Para resolver este erro seria necessario adicionar a pre condicao que o tamanho do array tem de ser maior que 0.
+O 1º erro indica que estamos a tentar aceder a uma casa do array que pode nao existir, Para resolver este erro seria necessario adicionar a pre condicao que o tamanho do array tem de ser maior que 0. Enquanto que o 2º erro queixa que nao e possivel verficar a pos condicao, para resolver este erro é necessario adicionar uma invariante ao ciclo while.
 
 c)
 
