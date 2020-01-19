@@ -9,4 +9,4 @@ Ambos os erros estao relacionados e devem-se ao facto de o array fornecido poder
 
 c)
 
-Dafny so garante correção parcial, significando que nao garante que o programa termina.
+Dafny usa decreases annotations, embora em alguns casos temos de inserir manualmente, de forma a nao levantar problemas de terminacao.

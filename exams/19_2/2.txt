@@ -8,4 +8,4 @@ b)
 
 c)
 
-//TODO
+Dafny usa decreases annotations, embora em alguns casos temos de inserir manualmente, de forma a nao levantar problemas de terminacao.
