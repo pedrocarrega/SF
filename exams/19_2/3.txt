@@ -1,0 +1,7 @@
+a)
+
+Predicates are important in VeriFast because they show the behavior of a class or interface, giving an overall idea of the functionality of the class.
+This predicate creates a linked list with the values present on the array, it does thi
+
+b)
+
